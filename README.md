@@ -1,5 +1,55 @@
 # SpringCloudWithZuulAndEureka
-Using Spring to create Microservices
+Using Eureka Discovery service and Zuul as proxy
+
+## Eureka
+To enable service discovery, in your microservices add the following dependencia:
+```
+implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+```
+And then, add the anotion to driver class:
+```
+@EnableEurekaClient
+
+```
+Configure the application.yml file:
+```
+spring:
+  application:
+    name: api-client
+
+server:
+  port: 8501
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8502/eureka/
+  instance:
+    hostname: localhost
+```
+
+In the Discovery microservice add the following dependency:
+```
+implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+```
+Enable Eureka Proxydriver class:
+```
+@EnableZuulProxy
+```
+Configure the application.yml:
+```
+eureka:
+  dashboard:
+    enabled: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+```
+
 
 ## To open up the Eureka dashboard
 ```
