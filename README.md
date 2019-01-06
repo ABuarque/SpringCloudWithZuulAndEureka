@@ -34,9 +34,9 @@ In the Discovery microservice add the following dependency:
 ```
 implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
 ```
-Enable Eureka Proxydriver class:
+Enable Eureka server in driver class:
 ```
-@EnableZuulProxy
+@EnableEurekaServer
 ```
 Configure the application.yml:
 ```
@@ -54,6 +54,31 @@ eureka:
 To open up the Eureka dashboard
 ```
 http://localhost:8502/
+```
+## Zuul
+Add the following dependencie to the gateway microservice:
+```
+implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+```
+Add the Enable zuul proxy anotation to driver class:
+```
+@EnableZuulProxy
+```
+Configure the application.yml:
+```
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    api-server:
+      stripPrefix: false
+      path: /users/**
+      url: http://localhost:8500
+    api-client:
+      stripPrefix: false
+      path: /analysis/**
+      url: http://localhost:8501
+
 ```
 
 ## Fixing problems with JAXB
