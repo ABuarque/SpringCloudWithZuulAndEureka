@@ -51,7 +51,7 @@ eureka:
 ```
 
 
-## To open up the Eureka dashboard
+To open up the Eureka dashboard
 ```
 http://localhost:8502/
 ```
