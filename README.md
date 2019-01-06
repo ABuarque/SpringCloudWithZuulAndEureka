@@ -1,6 +1,11 @@
 # SpringCloudWithZuulAndEureka
 Using Spring to create Microservices
 
+## To open up the Eureka dashboard
+```
+http://localhost:8502/
+```
+
 ## Fixing problems with JAXB
 About: http://blog.caelum.com.br/erros-com-jaxb-no-java-9/
 
