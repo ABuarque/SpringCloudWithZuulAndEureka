@@ -13,3 +13,16 @@ eureka:
     fetchRegistry: false
     server:
       waitTimeInMsWhenSyncEmpty: 0
+
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    api-server:
+      stripPrefix: false
+      path: /users/**
+      url: http://localhost:8500
+    api-client:
+      stripPrefix: false
+      path: /analysis/**
+      url: http://localhost:8501
