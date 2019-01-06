@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate
 @RestController
 @RequestMapping("/analysis")
 class ClientResource {
-    
+
     @Autowired
     private lateinit var restTemplate: RestTemplate
 
