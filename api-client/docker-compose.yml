@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  client-api:
+    ports:
+      - "8501:8501"
+    links:
+      - "server-api:server-api"
+    environment:
+      - SERVER_HOST=server-api
+      - SERVER_PORT=8500
+    build: .
+
+  server-api:
+    build: ../api-server
+    ports:
+      - "8500:8500"
