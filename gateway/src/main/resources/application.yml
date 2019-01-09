@@ -5,14 +5,14 @@ spring:
 server:
   port: 8502
 
-eureka:
-  dashboard:
-    enabled: true
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
+#eureka:
+#  dashboard:
+#    enabled: true
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    server:
+#      waitTimeInMsWhenSyncEmpty: 0
 
 zuul:
   #Service will be mapped under the /api URI
@@ -21,8 +21,9 @@ zuul:
     api-server:
       stripPrefix: false
       path: /users/**
-      url: http://localhost:8500
+      url: ${USER_SERVER_ENDPOINT:http://localhost:8500}
     api-client:
       stripPrefix: false
       path: /analysis/**
-      url: http://localhost:8501
+      url: ${ANALYSIS_SERVER_ENDPOINT:http://localhost:8501}
+
